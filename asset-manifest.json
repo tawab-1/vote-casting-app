@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/vote-casting-app/static/css/main.073c9b0a.css",
-    "main.js": "/vote-casting-app/static/js/main.2f6224c0.js",
+    "main.css": "/vote-casting-app/static/css/main.ffe34ec7.css",
+    "main.js": "/vote-casting-app/static/js/main.833a6043.js",
     "static/js/787.dcb08ccd.chunk.js": "/vote-casting-app/static/js/787.dcb08ccd.chunk.js",
+    "static/media/bgVideo.mp4": "/vote-casting-app/static/media/bgVideo.f8ae21711cd6d0884586.mp4",
     "index.html": "/vote-casting-app/index.html",
-    "main.073c9b0a.css.map": "/vote-casting-app/static/css/main.073c9b0a.css.map",
-    "main.2f6224c0.js.map": "/vote-casting-app/static/js/main.2f6224c0.js.map",
+    "main.ffe34ec7.css.map": "/vote-casting-app/static/css/main.ffe34ec7.css.map",
+    "main.833a6043.js.map": "/vote-casting-app/static/js/main.833a6043.js.map",
     "787.dcb08ccd.chunk.js.map": "/vote-casting-app/static/js/787.dcb08ccd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.2f6224c0.js"
+    "static/css/main.ffe34ec7.css",
+    "static/js/main.833a6043.js"
   ]
 }
