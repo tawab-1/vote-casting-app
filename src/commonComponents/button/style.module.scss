@@ -1,0 +1,83 @@
+@import '../../assets/styles/colors';
+
+@mixin btnTransition {
+  color: $color-cyan-primary;
+  border-color: $color-cyan-primary;
+}
+
+@mixin btnTransitionColor {
+  background-image: $btn-linear-gradient;
+}
+@mixin btnTransitionColorRed {
+  background-image: none;
+}
+@mixin common {
+  background-size: 0% 100%;
+  border: none;
+  border-radius: 6px;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  height: 45px;
+  border: 1px solid #2d71d8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background: #2d71d8;
+  border: 1px solid #2d71d8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 31px !important;
+  span {
+    // line-height: 1.2;
+    font-size: 1rem;
+    padding: 0rem;
+  }
+}
+
+.commonButton {
+  width: 100%;
+  :global(.ant-btn) {
+    @include common;
+    &:hover {
+      background-color: #fff;
+      color: #2d71d8 !important;
+      @include btnTransition;
+      @include btnTransitionColor;
+    }
+    &:active,
+    &:focus {
+      background-color: #fff;
+      border-color: $color-cyan-primary;
+      color: #2d71d8 !important;
+    }
+  }
+}
+.commonCancel {
+  width: 100%;
+  :global(.ant-btn) {
+    // background-color: $color-red;
+    background-color: #ffffff !important;
+    border: 1px solid #2d71d8;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 31px;
+    color: #2d71d8 !important;
+
+    @include common;
+    &:hover {
+      // background-color: $color-red;
+      background-color: #2d71d8;
+      color: #fff;
+      @include btnTransition;
+      @include btnTransitionColorRed;
+    }
+    &:active,
+    &:focus {
+      background-color: #fff;
+      @include btnTransition;
+      @include btnTransitionColorRed();
+    }
+  }
+}
