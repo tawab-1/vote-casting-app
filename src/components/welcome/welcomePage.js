@@ -1,122 +1,99 @@
-import React from 'react';
+import {Helmet} from 'react-helmet';
+import {Row, Col, Button} from 'antd';
 import styled from 'styled-components';
-import bgVideo from '../../assets/videos/bgVideo.mp4';
-import {Layout, Button} from 'antd';
+import topIcon from '../../assets/images/topicon.png';
+import polygon from '../../assets/images/polygon.svg';
+
+import {documentTitle} from '../../utils/page-title';
+import React, {useState} from 'react';
+import Loginpage from '../login/loginpage';
 
 const WelcomePage = () => {
-  return (
-    <WelcomePageWrapper>
-      <VideoElement src={bgVideo} autoPlay muted />
-      <MobileWelcome>
-        <h1>Welcome to</h1>
-        <h2>Corruption free Pakistan</h2>
-        <p>Collaborate with us to meke pakistan Corruption free</p>
-      </MobileWelcome>
-      <WelcomePageContent>
-        <div>
-          <h1>Criteria</h1>
-          <p> Here will the </p>
-          <p>Criteria to caste user votes</p>
-        </div>
-        <LoginButtonsWrapper>
-          <LoginButton
-            type='primary'
-            htmlType='submit'
-            className='login-form-button'
-          >
-            Log in Via Core Team
-          </LoginButton>
-          <LoginButton
-            type='primary'
-            htmlType='submit'
-            className='login-form-button'
-          >
-            Log in Via Polling Team
-          </LoginButton>
-          <LoginButton
-            type='primary'
-            htmlType='submit'
-            className='login-form-button'
-          >
-            Log in Via Online User
-          </LoginButton>
-        </LoginButtonsWrapper>
-      </WelcomePageContent>
-    </WelcomePageWrapper>
+  const [isLoginRender, setIsLoginRender] = useState('');
+
+  const loginHandler = (buttonProp) => {
+    setIsLoginRender(buttonProp);
+  };
+  return isLoginRender === 'core_team' ||
+    isLoginRender === 'polling_team' ||
+    isLoginRender === 'online_user' ? (
+    <Loginpage isLoginRender={isLoginRender} />
+  ) : (
+    <LoginWrapper>
+      <Helmet>
+        <title>{documentTitle.login}</title>
+      </Helmet>
+      <SignInFormWrapper>
+        <Row>
+          <Col xs={24} md={12} lg={12}>
+            <StyledPolygonWrapper>
+              <StyledFormWrapper>
+                <h1>SignIn</h1>
+                <p className='mb-4'>Select Your Related Login</p>
+                <LoginButtonsWrapper>
+                  <LoginButton
+                    type='button'
+                    className='login-form-button'
+                    onClick={() => loginHandler('core_team')}
+                  >
+                    Log in Via Core Team
+                  </LoginButton>
+                  <LoginButton
+                    type='button'
+                    className='login-form-button'
+                    onClick={() => loginHandler('polling_team')}
+                  >
+                    Log in Via Polling Team
+                  </LoginButton>
+                  <LoginButton
+                    type='button'
+                    className='login-form-button'
+                    onClick={() => loginHandler('online_user')}
+                  >
+                    Log in Via Online User
+                  </LoginButton>
+                </LoginButtonsWrapper>
+              </StyledFormWrapper>
+            </StyledPolygonWrapper>
+          </Col>
+          <Col xs={24} md={12} lg={12}>
+            <StyledRightWrapper>
+              <StyledHeadingPara>
+                <StyledHeading1>Welcome Pakistan</StyledHeading1>
+                <p>
+                  We are proud to introduce a secure voting system based on
+                  fingerprint identification, aiming to eliminate corruption and
+                  ensure fair elections. With our cutting-edge technology,
+                  voters can now cast their votes conveniently and securely from
+                  the comfort of their homes.
+                </p>
+              </StyledHeadingPara>
+              <StyledMiddleImgWrapper>
+                <StyledMiddleImg src={topIcon} alt={topIcon} />
+              </StyledMiddleImgWrapper>
+              <StyledHeading1>Election Commission of Pakistan</StyledHeading1>
+            </StyledRightWrapper>
+          </Col>
+        </Row>
+      </SignInFormWrapper>
+    </LoginWrapper>
   );
 };
 
 export default WelcomePage;
 
-const WelcomePageWrapper = styled.div`
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  padding-right: 5%;
-  background-color: #006b12;
+const StyledMiddleImgWrapper = styled.div`
+  background-color: white;
+  border-radius: 240px 240px 40px 40px;
 `;
 
-const VideoElement = styled.video`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  @media (max-width: 1015px) {
-    object-fit: contain !important;
-  }
-  @media (max-width: 700px) {
-    display: none;
-  }
-`;
-const MobileWelcome = styled.div`
-  height: 85%;
-  padding-left: 20px;
-  text-align: left;
-  h1,
-  h2 {
-    text-align: center;
-    font-size: 37px;
-    font-weight: 500;
-  }
-  h2 {
-    font-size: 25px;
-    font-weight: 400;
-    margin-bottom: 15px;
-  }
-  @media (min-width: 700px) {
-    display: none;
-  }
-`;
-const WelcomePageContent = styled(Layout)`
-  position: absolute;
-  width: 40%;
-  height: 85%;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 15px, rgba(0, 0, 0, 0.1) 0px 45px 26px;
-  background-color: #006b12;
-  border-radius: 13px;
-  margin: 24px 16px;
-  padding: 24px;
-  min-height: 280;
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  @media (max-width: 700px) {
-    position: relative;
-  }
-`;
 const LoginButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
 const LoginButton = styled(Button)`
-  background-color: #006b12;
+  background-color: rgb(31 90 50);
   width: 100%;
   height: 50px;
   border: 1px solid hsla(0, 0%, 100%, 0.4);
@@ -127,9 +104,125 @@ const LoginButton = styled(Button)`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   :hover {
     background-color: #ffffff !important;
-    border-color: #006b12;
+    border-color: rgb(31 90 50);
     span {
-      color: #006b12;
+      color: rgb(31 90 50);
     }
+  }
+`;
+
+const LoginWrapper = styled.div`
+  .ant-form-item-label
+    > label.ant-form-item-required:not(
+      .ant-form-item-required-mark-optional
+    )::before {
+    display: none;
+    visibility: hidden;
+  }
+
+  .ant-form-item-label
+    > label.ant-form-item-required:not(
+      .ant-form-item-required-mark-optional
+    )::after {
+    display: none;
+    visibility: hidden;
+  }
+`;
+
+const StyledPolygonWrapper = styled.div`
+  background-image: url(${polygon});
+  background-size: cover;
+  background-position: right center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  padding-right: 4em;
+`;
+
+const StyledMiddleImg = styled.img`
+  position: relative;
+  top: -30px;
+  width: 100%;
+  max-width: 380px;
+
+  @media (max-width: 1440px) {
+    max-width: 350px;
+  }
+
+  @media (max-width: 1366px) {
+    max-width: 388px;
+  }
+`;
+
+const StyledRightWrapper = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 0 25px;
+  gap: 30px;
+`;
+const StyledHeading1 = styled.h1`
+  font-family: 'Poppins' !important;
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: center;
+`;
+const StyledHeadingPara = styled.div`
+  p {
+    font-weight: 400;
+    margin-bottom: 0.5;
+    text-align: center;
+    padding: 0px 40px;
+  }
+`;
+
+const StyledFormWrapper = styled.div`
+  width: 100%;
+  max-width: 500px;
+  padding: 0 25px;
+
+  h1 {
+    font-family: 'Poppins' !important;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
+
+  p {
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  .textSpace {
+    margin-bottom: 59px;
+  }
+`;
+
+const SignInFormWrapper = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  background-color: #216036;
+  font-family: 'poppins';
+
+  * {
+    word-spacing: 0px !important;
+  }
+
+  .ant-form-item-explain-error {
+    color: red;
+    word-spacing: 0 !important;
+    font-style: italic;
+    margin-top: 2px;
   }
 `;
