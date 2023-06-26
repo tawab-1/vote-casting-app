@@ -9,9 +9,49 @@ import {
 } from '@ant-design/icons/lib/icons';
 import {Content, Header} from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
-import {StyledCard} from '../commonCard';
+import {StyledCard} from '../../commonComponents/commonCard';
+import GaugeChart from 'react-gauge-chart';
+import CommonTable from '../../commonComponents/commonTable';
 
 function CoreDashboard() {
+  const tableHeight = 274;
+  const dataSource = [];
+  for (let i = 1; i <= 50; i++) {
+    dataSource.push({
+      id: i,
+      name: `Person ${i}`,
+      age: Math.floor(Math.random() * 40) + 20,
+      email: `person${i}@example.com`,
+      city: ['New York', 'London', 'Paris', 'Tokyo'][
+        Math.floor(Math.random() * 4)
+      ],
+      occupation: ['Engineer', 'Teacher', 'Doctor', 'Designer'][
+        Math.floor(Math.random() * 4)
+      ],
+    });
+  }
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+    },
+    {
+      title: 'City',
+      dataIndex: 'city',
+    },
+    {
+      title: 'Occupation',
+      dataIndex: 'occupation',
+    },
+  ];
   const getItem = (label, key, icon, children) => {
     return {
       key,
@@ -26,9 +66,6 @@ function CoreDashboard() {
     getItem('Navigation Two', '3', <AppstoreOutlined />),
     getItem('Navigation Three', '4', <SettingOutlined />),
   ];
-  const obtained = 70;
-  const total = 100;
-  const format = () => `${obtained}/${total}`;
 
   return (
     <Layout
@@ -45,7 +82,7 @@ function CoreDashboard() {
           <HeaderText>Election Commission of pakistan</HeaderText>
         </StyledHeader>
         <StyledContentWrapper>
-          <Row className='mt-5'>
+          <Row className='mt-3'>
             <WelcomeDiv>
               <h1>
                 Good morning <span>Admin.</span>
@@ -53,47 +90,88 @@ function CoreDashboard() {
               <h2>Welcome to your dashboard</h2>
             </WelcomeDiv>
           </Row>
-          <Row>
-            <Col className='d-flex flex-wrap' sm={18}>
-              <Col sm={7}>
-                <StyledCard width='100%' borderRadius='12px'>
-                  card 1
-                </StyledCard>
-              </Col>
-              <Col span={1}></Col>
-              <Col sm={7}>
-                <StyledCard width='100%' borderRadius='12px'>
-                  card 2
-                </StyledCard>
-              </Col>
-              <Col span={1}></Col>
-              <Col sm={7}>
-                <StyledCard width='100%' borderRadius='12px'>
-                  card 3
-                </StyledCard>
-              </Col>
-              <Col sm={7}>
-                <StyledCard width='100%' borderRadius='12px'>
-                  card 4
-                </StyledCard>
-              </Col>
-              <Col sm={7}>
-                <StyledCard width='100%' borderRadius='12px'>
-                  card 5
-                </StyledCard>
-              </Col>
-              <Col sm={7}>
-                <StyledCard width='100%' borderRadius='12px'>
-                  card 6
-                </StyledCard>
-              </Col>
+          <Row gutter={12}>
+            <Col sm={18} className='d-flex flex-column justify-content-between'>
+              <Row gutter={12}>
+                <Col sm={8}>
+                  <StyledCard width='100%'>
+                    Total Polling Stations <br />
+                    2000
+                  </StyledCard>
+                </Col>
+                <Col sm={8}>
+                  <StyledCard width='100%' borderRadius='12px'>
+                    Polling Stations Process Completed <br />
+                    768
+                  </StyledCard>
+                </Col>
+
+                <Col sm={8}>
+                  <StyledCard width='100%' borderRadius='12px'>
+                    Polling Stations Process Pending <br />
+                    546
+                  </StyledCard>
+                </Col>
+              </Row>
+              <Row gutter={12}>
+                <Col sm={8}>
+                  <StyledCard width='100%' borderRadius='12px'>
+                    Total Casted Votes <br />
+                    657
+                  </StyledCard>
+                </Col>
+                <Col sm={8}>
+                  <StyledCard width='100%' borderRadius='12px'>
+                    Pending votes <br />
+                    548
+                  </StyledCard>
+                </Col>
+                <Col sm={8}>
+                  <StyledCard width='100%' borderRadius='12px'>
+                    Total Votes <br />
+                    7456
+                  </StyledCard>
+                </Col>
+              </Row>
             </Col>
             <Col sm={6}>
-              <StyledCard width='100%' height='100%' borderRadius='12px'>
-                card 4
+              <StyledCard
+                width='100%'
+                height='100%'
+                borderRadius='12px'
+                color='#1f5a32'
+                fontSize='24px'
+                fontWeight='600'
+                fontFamily='Poppins'
+                padding='0px 20px'
+              >
+                Over All Casted
+                <StyledGaugeChart
+                  id='gauge-chart4'
+                  nrOfLevels={1}
+                  arcPadding={0.1}
+                  cornerRadius={3}
+                  percent={0.9}
+                  CircleColor={'#1f5a32'}
+                  needleColor={'#1f5a32'}
+                />
               </StyledCard>
             </Col>
           </Row>
+          <StyledTaleRow className='mt-3 mb-3 p-1'>
+            <Col sm={24} style={{backgroundColor: 'white'}}>
+              <h2 style={{color: 'black'}}>Total Polling Stations</h2>
+            </Col>
+            <Col sm={24}>
+              <CommonTable
+                dataSource={dataSource}
+                columns={columns}
+                pagination={false}
+                tableHeight={tableHeight}
+                headerColor={'white'}
+              />
+            </Col>
+          </StyledTaleRow>
         </StyledContentWrapper>
       </Layout>
     </Layout>
@@ -170,4 +248,36 @@ const WelcomeDiv = styled.div`
     font-weight: 500;
     letter-spacing: 1px;
   }
+`;
+
+const StyledGaugeChart = styled(GaugeChart)`
+  svg {
+    g {
+      .doughnut {
+        .arc {
+          path {
+            fill: ${(props) =>
+              props.CircleColor ? props.CircleColor : ''} !important;
+          }
+        }
+      }
+      .needle {
+        path {
+          fill: ${(props) =>
+            props.needleColor ? props.needleColor : ''} !important;
+        }
+        circle {
+          fill: ${(props) =>
+            props.needleColor ? props.needleColor : ''} !important;
+        }
+      }
+    }
+  }
+`;
+
+const StyledTaleRow = styled(Row)`
+  border-radius: 12px;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  padding: 4px;
+  background-color: white;
 `;

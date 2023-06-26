@@ -1,0 +1,85 @@
+.commonButton {
+  width: 100%;
+}
+.commonButton :global(.ant-btn) {
+  background-size: 0% 100%;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  height: 45px;
+  border: 1px solid #2d71d8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background: #2d71d8;
+  border: 1px solid #2d71d8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 31px !important;
+}
+.commonButton :global(.ant-btn) span {
+  font-size: 1rem;
+  padding: 0rem;
+}
+.commonButton :global(.ant-btn):hover {
+  background-color: #fff;
+  color: #2d71d8 !important;
+  color: #2D71D8;
+  border-color: #2D71D8;
+  background-image: #fff;
+}
+.commonButton :global(.ant-btn):active, .commonButton :global(.ant-btn):focus {
+  background-color: #fff;
+  border-color: #2D71D8;
+  color: #2d71d8 !important;
+}
+
+.commonCancel {
+  width: 100%;
+}
+.commonCancel :global(.ant-btn) {
+  background-color: #ffffff !important;
+  border: 1px solid #2d71d8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 31px;
+  color: #2d71d8 !important;
+  background-size: 0% 100%;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  height: 45px;
+  border: 1px solid #2d71d8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background: #2d71d8;
+  border: 1px solid #2d71d8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 31px !important;
+}
+.commonCancel :global(.ant-btn) span {
+  font-size: 1rem;
+  padding: 0rem;
+}
+.commonCancel :global(.ant-btn):hover {
+  background-color: #2d71d8;
+  color: #fff;
+  color: #2D71D8;
+  border-color: #2D71D8;
+  background-image: none;
+}
+.commonCancel :global(.ant-btn):active, .commonCancel :global(.ant-btn):focus {
+  background-color: #fff;
+  color: #2D71D8;
+  border-color: #2D71D8;
+  background-image: none;
+}/*# sourceMappingURL=style.module.css.map */
